@@ -1,19 +1,18 @@
-use std::io;
-use rand::Rng;
-
+// A simple multiplication table that calculates up to 10
 fn main() {
-    println!("Guess the number!");
+    let mut val1: i8 = 1;
+    let mut val2: i8 = 1;
 
-    let secret_number = rand::thread_rng().gen_range(1..101);
-    println!("The secret number is: {}", secret_number);
+    loop {
+        println!("{} x {} = {}", val1, val2, val1 * val2);
 
-    println!("Please input your guess.");
+        val2 += 1;
 
-    let mut guess = String::new();
-
-    io::stdin()
-        .read_line(&mut guess)
-        .expect("Failed to read line");
-
-    println!("Your guessed: {}", guess);
+        if val1 == 10 && val2 > 10 {
+            break;
+        } else if val2 > 10 {
+            val1 += 1;
+            val2 = 1;
+        }
+    }
 }
